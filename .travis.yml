@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - '0.10'
+  - '0.12'
+
+branches:
+  only:
+    - master
+    - travis-ci
+
+before_install:
+  - npm install
+  - npm install istanbul coveralls
+
+env:
+  global:
+  - secure: "KQ4cv7n7cRR2kNbNOqEXT2YehjoOte8an+jLqFYcqF2fIyx6UIIkU2doALqPCaRX4Bg1yULt5XoPI+AZxdokPbF9oy8yBmybWQkuhEwjuTejb2h9mNyiZQkSPwpJPv7lapahm2xuDCIq67u9AIBkA4nfSRkubmiCqXn0naUwYEczRkhfopiTujnx7gw4fZkT+lQbe+F7dI+3vTGnZ1oR7EXaYh5/QnhLNVJizVDfk266N5jiDHS8WqSFwyHn8Op6a+3AJwaO2Fx+OOJmz3q58803yvZVlQEEBfb+be8hnmwXokaqni8vxBYTLHG85zaGcxKXFf3Rl6riTKGYY9fPpbV9CqjeoqvXdN6ekPcv0TJAq5UvKVj/IH6KONm5dCinR9yXFFMd2ZaYdOUtq+aoeKr+FjGZW16TVmdyCCfTzxhtfEHvw1hYPYqF7NRyIZ0R/BSatASJvjCwmREbkyD2SE/JHf9Rzgy9+6/VKRZv0VdLIlhvhDABHJClB0gfyI5Cm4TL2idlo5nRaOG/JqNY2A1UTIVsTyRvuv2hB+2UlNCTlQPWMCgHwmaQ8/R8FNi/06pmVL+V0lDsd5fFPsqcNjgoOQbgU0/0fRCMJaUyStCc9O1Qo5zYfs7JGZrGr51ZwdBvQLwncYrlX6n6ChSC2ZWjYRBpb4QUp+Qrf00bQP0="
