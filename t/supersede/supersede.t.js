@@ -1,4 +1,4 @@
-require('proof')(8, prove)
+require('proof')(10, prove)
 
 function prove (assert) {
     var Supersede = require('../../supersede')
