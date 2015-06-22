@@ -1,5 +1,25 @@
-require('proof')(1, prove)
+require('proof')(8, prove)
 
 function prove (assert) {
-    assert(require('../..'), require)
+    var Supersede = require('../../supersede')
+    var set = new Supersede('z')
+
+    assert(set.get('.hello'), 'z', 'empty get')
+    set.set('.', 'a')
+    assert(set.get('.hello'), 'a', 'root get')
+    set.set('.hello.world', 'x')
+    set.set('.hello.nurse', 'y')
+    assert(set.get('.hello'), 'a', 'short path get')
+    assert(set.get('.hello.nurse'), 'y', 'full path get')
+    set.set('.hello', 'c')
+    assert(set.get('.hello'), 'c', 'parent get')
+    set.remove('.hello.nurse')
+    assert(set.get('.hello.world'), 'x', 'child get')
+    assert(set.get('.hello.nurse'), 'c', 'child get parent value')
+    set.set('.hello.nurse', 'y')
+    assert(set.get('.hello.nurse'), 'y', 'child reset get')
+    set.remove('.hello.*')
+    assert(set.get('.hello.world'), 'c', 'delete all one')
+    assert(set.get('.hello.nurse'), 'c', 'delete all two')
+    set.remove('.hello.nurse.*')
 }
