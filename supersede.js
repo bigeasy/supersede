@@ -26,15 +26,16 @@ Supersede.prototype.set = function (path, value) {
 
 Supersede.prototype.remove = function (path) {
     var parts = this._split(path)
-    var unset = parts.pop()
+    var stop = parts.length - 1
+    var unset = parts[stop]
 
     var value = this._value, parent = this._root, node, i = 0
-    while (i < parts.length && (node = parent[parts[i]])) {
+    while (i < stop && (node = parent[parts[i]])) {
         i++
         parent = node
     }
 
-    if (i == parts.length) {
+    if (i == stop) {
         if (unset == '*') {
             for (var key in parent) {
                 if (key != '.value') {
