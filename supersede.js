@@ -3,20 +3,14 @@ function Supersede (value) {
     this._value = value
 }
 
-Supersede.prototype._split = function (path) {
-    return path == '.' ? [ ''  ] : path.split('.')
-}
-
 Supersede.prototype.set = function (path, value) {
-    var parts = this._split(path)
+    var node = this._root
 
-    var node = this._root, child
-
-    for (var i = 0, I = parts.length; i < I; i++) {
-        if (!node[parts[i]]) {
-            node[parts[i]] = {}
+    for (var i = 0, I = path.length; i < I; i++) {
+        if (!node[path[i]]) {
+            node[path[i]] = {}
         }
-        node = node[parts[i]]
+        node = node[path[i]]
     }
 
     node['.value'] = value
@@ -25,12 +19,11 @@ Supersede.prototype.set = function (path, value) {
 }
 
 Supersede.prototype.remove = function (path) {
-    var parts = this._split(path)
-    var stop = parts.length - 1
-    var unset = parts[stop]
+    var stop = path.length - 1
+    var unset = path[stop]
 
     var value = this._value, parent = this._root, node, i = 0
-    while (i < stop && (node = parent[parts[i]])) {
+    while (i < stop && (node = parent[path[i]])) {
         i++
         parent = node
     }
@@ -49,11 +42,8 @@ Supersede.prototype.remove = function (path) {
 }
 
 Supersede.prototype.get = function (path) {
-    var parts = this._split(path)
-    var parts = path.split('.')
-
     var value = this._value, node = this._root, child, i = 0
-    while (child = node[parts[i++]]) {
+    while (child = node[path[i++]]) {
         node = child
         value = node['.value'] == null ? value : node['.value']
     }
