@@ -1,6 +1,5 @@
 function Supersede (value) {
-    this._root = {}
-    this._value = value
+    this._root = { '.value': value }
 }
 
 Supersede.prototype.set = function (path, value) {
@@ -42,12 +41,11 @@ Supersede.prototype.remove = function (path) {
 }
 
 Supersede.prototype.get = function (path) {
-    var value = this._value, node = this._root, child, i = 0
-    while (child = node[path[i++]]) {
-        node = child
+    var node = this._root, i = 0, value
+    do {
         value = node['.value'] == null ? value : node['.value']
-    }
-
+        node = node[path[i++]]
+    } while (node)
     return value
 }
 
