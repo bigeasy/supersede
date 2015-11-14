@@ -1,5 +1,6 @@
-function Supersede (value) {
-    this._root = { '.value': value }
+function Supersede () {
+    this._root = {}
+    this._root[''] = this._root
 }
 
 Supersede.prototype.set = function (path, value) {
@@ -20,6 +21,7 @@ Supersede.prototype.set = function (path, value) {
 Supersede.prototype.remove = function (path) {
     var stop = path.length - 1
     var unset = path[stop]
+    var ignore
 
     var value = this._value, parent = this._root, node, i = 0
     while (i < stop && (node = parent[path[i]])) {
@@ -29,11 +31,14 @@ Supersede.prototype.remove = function (path) {
 
     if (i == stop) {
         if (unset == '*') {
+            ignore = node === this._root ? [ '.value', '' ] : [ '.value' ]
             for (var key in parent) {
-                if (key != '.value') {
+                if (ignore.indexOf(key) == -1) {
                     delete parent[key]
                 }
             }
+        } else if (node === this._root) {
+            delete parent['.value']
         } else {
             delete parent[unset]
         }
@@ -47,6 +52,20 @@ Supersede.prototype.get = function (path) {
         node = node[path[i++]]
     } while (node)
     return value
+}
+
+Supersede.prototype.gather = function (path) {
+    var node = this._root, i = 0, array = []
+    for (;;) {
+        node = node[path[i++]]
+        if (node == null) {
+            break
+        }
+        if (node['.value'] != null) {
+            array.push(node['.value'])
+        }
+    }
+    return array
 }
 
 module.exports = Supersede
