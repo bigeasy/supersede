@@ -88,3 +88,7 @@ signal.on('system.web.logger.info', logger.info)
 ```
 
 What is going to be useful? So much thought to put into late binding.
+
+The only place that is useful is in `gather`, so I can make a new function that
+respsects that, but it would be slightly more expensive than `gather`, but only
+slightly more. It will not be universal. It can only be for `'*'`.
