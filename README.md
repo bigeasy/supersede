@@ -67,3 +67,24 @@ along the path an empty array is returned.
 
 Removes the node specified by the given path. If the final step of the path is
 `'*'` then all children of the step before it are removed.
+
+
+### Diary
+
+The star `'*'` here is special and needs to be used carefully. Using it to
+remove all might not be the best.
+
+What if we want to register a listener, so we place a `'*'` in the tree itself?
+Then we can search a path where we look for everything that is the given step or
+a star, but now we are getting into some recursive pattern matching. Do we
+really want to match `'*'` star?
+
+
+```javascript
+signal.on('system.web.rost', handler1)
+signal.on('system.*.error', handler2)
+
+signal.on('system.web.logger.info', logger.info)
+```
+
+What is going to be useful? So much thought to put into late binding.
