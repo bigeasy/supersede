@@ -4,7 +4,7 @@ function prove (assert) {
     var Supersede = require('../../supersede')
     var set = new Supersede
 
-    assert(set.get('.hello'.split('.')), null, 'empty get')
+    assert(set.get('.hello'.split('.')) == null, 'empty get')
     set.set([ '', '' ], 'a')
     assert(set.get([ '' ]), 'a', 'root alias')
     assert(set.get('.hello'.split('.')), 'a', 'super get')
