@@ -65,9 +65,7 @@ along the path an empty array is returned.
 
 #### `supersede.remove(path)`
 
-Removes the node specified by the given path. If the final step of the path is
-`'*'` then all children of the step before it are removed.
-
+Removes the value of the node specified by the given path.
 
 ### Diary
 
