@@ -18,29 +18,21 @@ Supersede.prototype.set = function (path, value) {
     return value
 }
 
-Supersede.prototype.remove = function (path) {
-    var stop = path.length - 1
-    var unset = path[stop]
-    var ignore
+Supersede.prototype.remove = function (path, value) {
+    var node = this._root, parent
 
-    var value = this._value, parent = this._root, node, i = 0
-    while (i < stop && (node = parent[path[i]])) {
-        i++
+    for (var i = 0, I = path.length; i < I; i++) {
+        if (!node[path[i]]) {
+            return
+        }
         parent = node
+        node = node[path[i]]
     }
 
-    if (i == stop) {
-        if (unset == '*') {
-            ignore = node === this._root ? [ '.value', '' ] : [ '.value' ]
-            for (var key in parent) {
-                if (ignore.indexOf(key) == -1) {
-                    delete parent[key]
-                }
-            }
-        } else if (node === this._root) {
-            delete parent['.value']
-        } else {
-            delete parent[unset]
+    if ('.value' in node) {
+        delete node['.value']
+        if (I > 1 && Object.keys(node).length == 0) {
+            delete parent[path[I - 1]]
         }
     }
 }

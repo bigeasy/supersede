@@ -1,4 +1,4 @@
-require('proof')(14, prove)
+require('proof')(11, prove)
 
 function prove (assert) {
     var Supersede = require('../../supersede')
@@ -10,6 +10,7 @@ function prove (assert) {
     assert(set.get('.hello'.split('.')), 'a', 'super get')
     set.set('.hello.world'.split('.'), 'x')
     set.set('.hello.nurse'.split('.'), 'y')
+    set.remove('.hello'.split('.'))
     assert(set.get('.hello'.split('.')), 'a', 'short path get')
     assert(set.get('.hello.nurse'.split('.')), 'y', 'full path get')
     assert(set.gather('.hello.nurse'.split('.')), [ 'a', 'y' ], 'gather')
@@ -20,7 +21,10 @@ function prove (assert) {
     assert(set.get('.hello.nurse'.split('.')), 'c', 'child get parent value')
     set.set('.hello.nurse'.split('.'), 'y')
     assert(set.get('.hello.nurse'.split('.')), 'y', 'child reset get')
-    set.remove('.hello.*'.split('.'))
+    set.remove('.hello.earth'.split('.'))
+    set.remove('.'.split('.'))
+    assert(set.get('.'.split('.')) == null, 'remove root')
+    return
     assert(set.get('.hello.world'.split('.')), 'c', 'delete all one')
     assert(set.get('.hello.nurse'.split('.')), 'c', 'delete all two')
     set.remove('.*'.split('.'))
