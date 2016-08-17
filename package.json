@@ -1,7 +1,10 @@
 {
     "name":                 "supersede",
     "version":              "1.0.1",
-    "description":          "A path based set where the most specific path wins.",
+    "description":
+
+      "A path based set where the most specific path wins.",
+
     "author":               "Alan Gutierrez <alan@prettyrobots.com>",
     "homepage":             "https://bigeasy.github.io/supersede",
     "bugs":                 "https://github.com/bigeasy/supersede/issues",
