@@ -5,29 +5,26 @@
 
       "A path based set where the most specific path wins.",
 
-    "author":               "Alan Gutierrez <alan@prettyrobots.com>",
-    "homepage":             "https://bigeasy.github.io/supersede",
-    "bugs":                 "https://github.com/bigeasy/supersede/issues",
     "keywords":
     [
                             "set", "path", "tree", "levels"
     ],
-    "contributors":
-    [
-    ],
-    "main":                 "supersede",
+    "author":               "Alan Gutierrez <alan@prettyrobots.com>",
+    "homepage":             "https://bigeasy.github.io/supersede",
+    "bugs":                 "https://github.com/bigeasy/supersede/issues",
+    "license":              "MIT",
     "devDependencies":
     {
                             "proof":                        "1.x"
     },
-    "scripts":
-    {
-                            "test": "proof platform win32 && proof test */*/*.t.* || t/test"
-    },
-    "license":              "MIT",
     "repository":
     {
                             "type": "git",
                             "url": "http://github.com/bigeasy/supersede.git"
+    },
+    "main":                 "supersede",
+    "scripts":
+    {
+                            "test": "proof platform win32 && proof test */*/*.t.* || t/test"
     }
 }
