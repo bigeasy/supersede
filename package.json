@@ -13,14 +13,14 @@
     "homepage":             "https://bigeasy.github.io/supersede",
     "bugs":                 "https://github.com/bigeasy/supersede/issues",
     "license":              "MIT",
-    "devDependencies":
-    {
-                            "proof":                        "1.x"
-    },
     "repository":
     {
                             "type": "git",
                             "url": "http://github.com/bigeasy/supersede.git"
+    },
+    "devDependencies":
+    {
+                            "proof":                        "1.x"
     },
     "main":                 "supersede",
     "scripts":
