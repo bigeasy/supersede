@@ -1,7 +1,7 @@
 require('proof/redux')(11, prove)
 
 function prove (assert) {
-    var Supersede = require('../../supersede')
+    var Supersede = require('..')
     var set = new Supersede
 
     assert(set.get('.hello'.split('.')) == null, 'empty get')
